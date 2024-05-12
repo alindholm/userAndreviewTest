@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.12.1 on win32)" generated="2024-05-12T13:19:52.679257" rpa="false" schemaversion="5">
+<suite id="s1" name="AddReview" source="C:\Users\alexl\PycharmProjects\Test\Tests\Review\AddReview.robot">
+<test id="s1-t1" name="Add User Test" line="12">
+<kw name="Connect To Movehel" owner="ConnectToDatabase">
+<kw name="Connect To Database" owner="DatabaseLibrary">
+<msg time="2024-05-12T13:19:52.742417" level="INFO">Connecting using : psycopg2.connect(database=movehel, user=postgres, password=***, host=localhost, port=5432)</msg>
+<arg>psycopg2</arg>
+<arg>${DBName}</arg>
+<arg>${DBUser}</arg>
+<arg>${DBPass}</arg>
+<arg>${DBHost}</arg>
+<arg>${DBPort}</arg>
+<doc>Loads the DB API 2.0 module given ``dbapiModuleName`` then uses it to
+connect to the database using provided parameters such as ``dbName``, ``dbUsername``, and ``dbPassword``.</doc>
+<status status="PASS" start="2024-05-12T13:19:52.734896" elapsed="0.040404"/>
+</kw>
+<status status="PASS" start="2024-05-12T13:19:52.734896" elapsed="0.040404"/>
+</kw>
+<kw name="Execute Sql String" owner="DatabaseLibrary">
+<msg time="2024-05-12T13:19:52.775300" level="INFO">Executing : Execute SQL String  |  INSERT INTO review ("id_sportsPlace", "name_sportsPlace", rating, "reviewText", created_at, id_user)VALUES (72361, 'Kalliosaari (Uudenmaan virkistysalueyhdistys)', 4, 'Hyvä paikka, viihdyin hyvin!', CURRENT_TIMESTAMP, 5)</msg>
+<arg>INSERT INTO review ("id_sportsPlace", "name_sportsPlace", rating, "reviewText", created_at, id_user)VALUES (72361, '${name}', 4, '${text}', CURRENT_TIMESTAMP, ${id})</arg>
+<doc>Executes the ``sqlString`` as a single SQL command.</doc>
+<status status="PASS" start="2024-05-12T13:19:52.775300" elapsed="0.021786"/>
+</kw>
+<kw name="Query" owner="DatabaseLibrary">
+<msg time="2024-05-12T13:19:52.797086" level="INFO">Executing : Query  |  SELECT * FROM review WHERE id_review = 5 </msg>
+<msg time="2024-05-12T13:19:52.797086" level="INFO">@{result} = [ ]</msg>
+<var>@{result}</var>
+<arg>SELECT * FROM review WHERE id_review = ${id}</arg>
+<doc>Runs a query with the ``selectStatement`` and returns the result as a list of rows.
+The type of row values depends on the database module -
+usually they are tuples or tuple-like objects.</doc>
+<status status="PASS" start="2024-05-12T13:19:52.797086" elapsed="0.000000"/>
+</kw>
+<kw name="Log Many" owner="BuiltIn">
+<msg time="2024-05-12T13:19:52.797086" level="INFO">[]</msg>
+<arg>${result}</arg>
+<doc>Logs the given messages as separate entries using the INFO level.</doc>
+<status status="PASS" start="2024-05-12T13:19:52.797086" elapsed="0.000000"/>
+</kw>
+<kw name="Disconnect From Movehel" owner="ConnectToDatabase">
+<kw name="Disconnect From Database" owner="DatabaseLibrary">
+<msg time="2024-05-12T13:19:52.797086" level="INFO">Executing : Disconnect From Database</msg>
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2024-05-12T13:19:52.797086" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-05-12T13:19:52.797086" elapsed="0.000000"/>
+</kw>
+<tag>Add</tag>
+<status status="PASS" start="2024-05-12T13:19:52.734896" elapsed="0.062190"/>
+</test>
+<status status="PASS" start="2024-05-12T13:19:52.696072" elapsed="0.101014"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">Add</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="AddReview">AddReview</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
